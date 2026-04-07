@@ -11,9 +11,17 @@ config_version=5
 [application]
 
 config/name="DukeDevs 3D Model Demo"
+config/description="Demo for importing 3D models in Godot.
+Created by Leo Torrijos for DukeDevs, the game development club of JMU!"
+config/version="1.0.0"
 run/main_scene="uid://7sthe4ettmd7"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
 
 [input]
 
