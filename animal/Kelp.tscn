@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://i7fmc7ygmk8u"]
+
+[ext_resource type="PackedScene" uid="uid://dthkikaw6dfge" path="res://animal/BaseAnimal.tscn" id="1_k3wc7"]
+[ext_resource type="PackedScene" uid="uid://bhw6vksnyb3dr" path="res://assets/models/kelp.glb" id="2_sgh7k"]
+
+[node name="BaseAnimal" unique_id=663603285 instance=ExtResource("1_k3wc7")]
+
+[node name="kelp" parent="SquashRoot" parent_id_path=PackedInt32Array(34551405) index="0" unique_id=1683065606 instance=ExtResource("2_sgh7k")]

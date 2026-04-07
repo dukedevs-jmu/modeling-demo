@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://dthkikaw6dfge"]
+
+[ext_resource type="Script" uid="uid://bffpb0qae0m1v" path="res://animal/base_animal.gd" id="1_xeiwp"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cjra7"]
+
+[sub_resource type="Animation" id="Animation_rtftl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SquashRoot:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_xeiwp"]
+resource_name = "idle"
+length = 2.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SquashRoot:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1.05, 0.95, 1.05), Vector3(0.95, 1.1, 0.95)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rtftl"]
+_data = {
+&"RESET": SubResource("Animation_rtftl"),
+&"idle": SubResource("Animation_xeiwp")
+}
+
+[node name="BaseAnimal" type="CharacterBody3D" unique_id=663603285]
+collision_layer = 0
+script = ExtResource("1_xeiwp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=144700133]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9882306, 0)
+shape = SubResource("CapsuleShape3D_cjra7")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=326831703]
+target_desired_distance = 0.5
+
+[node name="WanderCooldown" type="Timer" parent="." unique_id=534421582]
+wait_time = 3.0
+one_shot = true
+
+[node name="SquashRoot" type="Node3D" parent="." unique_id=34551405]
+
+[node name="SquashAnimation" type="AnimationPlayer" parent="." unique_id=186520812]
+libraries/ = SubResource("AnimationLibrary_rtftl")
+
+[connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]
+[connection signal="timeout" from="WanderCooldown" to="." method="_on_wander_cooldown_timeout"]

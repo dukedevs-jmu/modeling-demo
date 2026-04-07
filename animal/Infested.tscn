@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://m4d6vhed3tt2"]
+
+[ext_resource type="PackedScene" uid="uid://dthkikaw6dfge" path="res://animal/BaseAnimal.tscn" id="1_cqmeu"]
+[ext_resource type="PackedScene" uid="uid://vsnuw7c3l1g1" path="res://assets/models/infested.glb" id="2_jhp5o"]
+
+[node name="BaseAnimal" unique_id=663603285 instance=ExtResource("1_cqmeu")]
+
+[node name="infested" parent="SquashRoot" parent_id_path=PackedInt32Array(34551405) index="0" unique_id=111130160 instance=ExtResource("2_jhp5o")]
+transform = Transform3D(-1.5, 0, -1.3113416e-07, 0, 1.5, 0, 1.3113416e-07, 0, -1.5, 0, 0, 0)

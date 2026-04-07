@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://7sthe4ettmd7"]
+
+[ext_resource type="Script" uid="uid://dk6kp1iyf7ti6" path="res://level/main_scene.gd" id="1_iv8ht"]
+[ext_resource type="Script" uid="uid://bid35eu5hu3pd" path="res://level/player.gd" id="1_ol021"]
+[ext_resource type="PackedScene" uid="uid://yi8jvmj1s4et" path="res://animal/Cubey.tscn" id="2_iv8ht"]
+[ext_resource type="PackedScene" uid="uid://fphvkjd6umyu" path="res://animal/LooseDog.tscn" id="3_ormnh"]
+[ext_resource type="PackedScene" uid="uid://i7fmc7ygmk8u" path="res://animal/Kelp.tscn" id="4_5tn4g"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_w0rey"]
+vertices = PackedVector3Array(-14.5, 0.5, -14.5, -14.5, 0.5, 14.5, 14.5, 0.5, 14.5, 14.5, 0.5, -14.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ormnh"]
+albedo_color = Color(0.21607152, 0.55174434, 0.25891814, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_w0rey"]
+material = SubResource("StandardMaterial3D_ormnh")
+size = Vector3(30, 2, 30)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ol021"]
+size = Vector3(30, 2, 30)
+
+[sub_resource type="Environment" id="Environment_co7g3"]
+background_mode = 1
+background_color = Color(0.46466398, 0.6164894, 0.89484334, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_co7g3"]
+radius = 0.25
+
+[node name="Node3D" type="Node3D" unique_id=830588142]
+script = ExtResource("1_iv8ht")
+animals = Array[PackedScene]([ExtResource("2_iv8ht"), ExtResource("3_ormnh"), ExtResource("4_5tn4g")])
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=699148385]
+navigation_mesh = SubResource("NavigationMesh_w0rey")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D" unique_id=1028487545]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D" unique_id=750546081]
+mesh = SubResource("BoxMesh_w0rey")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D" unique_id=815683338]
+shape = SubResource("BoxShape3D_ol021")
+
+[node name="Animals" type="Node3D" parent="." unique_id=747293320]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1586157851]
+environment = SubResource("Environment_co7g3")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=983750053]
+transform = Transform3D(0.87548137, -0.3620404, 0.32009232, 0, 0.66237164, 0.7491754, -0.48325184, -0.65588915, 0.579894, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Player" type="CharacterBody3D" parent="." unique_id=1330447636]
+collision_layer = 0
+script = ExtResource("1_ol021")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player" unique_id=1919949230]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_co7g3")
+
+[node name="Neck" type="Node3D" parent="Player" unique_id=2063747665]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Player/Neck" unique_id=94367274]

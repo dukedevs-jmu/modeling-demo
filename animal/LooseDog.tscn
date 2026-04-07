@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://fphvkjd6umyu"]
+
+[ext_resource type="PackedScene" uid="uid://dthkikaw6dfge" path="res://animal/BaseAnimal.tscn" id="1_m767i"]
+[ext_resource type="PackedScene" uid="uid://c8ossvueswcgq" path="res://assets/models/dog.glb" id="2_swj13"]
+[ext_resource type="Texture2D" uid="uid://dwnc28xxjudlx" path="res://assets/models/dog_fur.png" id="3_tlile"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hacqg"]
+albedo_texture = ExtResource("3_tlile")
+uv1_triplanar = true
+texture_filter = 0
+
+[node name="BaseAnimal" unique_id=663603285 instance=ExtResource("1_m767i")]
+
+[node name="dog" parent="SquashRoot" parent_id_path=PackedInt32Array(34551405) index="0" unique_id=1807167370 instance=ExtResource("2_swj13")]
+transform = Transform3D(-0.5, 0, -4.371139e-08, 0, 0.5, 0, 4.371139e-08, 0, -0.5, 0, 0, 0)
+
+[node name="Cube" parent="SquashRoot/dog/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1807167370, 437729882) index="0" unique_id=146647605]
+material_override = SubResource("StandardMaterial3D_hacqg")
+
+[editable path="SquashRoot/dog"]
